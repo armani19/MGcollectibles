@@ -173,3 +173,27 @@ header.is-hidden{transform:translateY(-100%)}
 section[id],footer[id]{scroll-margin-top:92px}
 @media(max-width:900px){section[id],footer[id]{scroll-margin-top:75px}}
 @media(prefers-reduced-motion:reduce){header{transition:none}}
+
+/* On phones, reviews become a swipeable row instead of a moving marquee. */
+.review-controls,.hint-mobile{display:none}
+.delivery h2 .kunai{width:48px;height:48px;color:var(--orange);vertical-align:middle}
+@media(max-width:650px){
+  .delivery h2{font-size:clamp(42px,10vw,58px);line-height:.98;letter-spacing:-1px;margin:25px 0 20px}
+  .delivery h2 .kunai{width:34px;height:34px}
+  .reviews h2{font-size:clamp(44px,11vw,64px);line-height:.96;margin:24px 0 16px}
+  .review-hint{font-size:12px;letter-spacing:1.2px;margin:0 0 15px}
+  .hint-desktop{display:none}.hint-mobile{display:inline}
+  .review-controls{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:20px;color:#bbb;font:800 12px 'Barlow Condensed',sans-serif;letter-spacing:1.5px}
+  .review-controls button{width:42px;height:42px;flex:none;border:1px solid var(--orange);background:#111;color:var(--orange);display:grid;place-items:center;cursor:pointer}
+  .review-controls button:last-child .kunai{transform:rotate(-135deg)}
+  .review-controls button:first-child .kunai{transform:rotate(45deg)}
+  .review-controls .kunai{width:24px;height:24px}
+  .review-viewport{overflow-x:auto;overflow-y:hidden;mask-image:none;-webkit-mask-image:none;scroll-snap-type:x mandatory;scroll-padding-inline:18px;scroll-behavior:smooth;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding-inline:18px;scrollbar-width:none}
+  .review-viewport::-webkit-scrollbar{display:none}
+  .review-track{animation:none!important;transform:none!important;will-change:auto}
+  .review-set{gap:14px;padding-right:14px}
+  .review-set[aria-hidden="true"]{display:none}
+  .review-card{width:min(82vw,360px);height:350px;min-height:0;flex:none;padding:23px;scroll-snap-align:start}
+  .review-card p{font-size:14px;line-height:1.5;max-height:none;min-height:0;overflow-y:auto}
+  .review-card strong{font-size:18px}
+}

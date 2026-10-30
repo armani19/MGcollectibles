@@ -36,3 +36,13 @@ test('hides the header on downward scroll and shows it on upward scroll', () => 
   expect(header).not.toHaveClass('is-hidden');
   window.scrollY = 0;
 });
+
+test('review controls scroll the review row', () => {
+  render(<App />);
+  const viewport = document.querySelector('.review-viewport');
+  const scrollBy = jest.fn();
+  Object.defineProperty(viewport, 'clientWidth', { configurable: true, value: 320 });
+  viewport.scrollBy = scrollBy;
+  fireEvent.click(screen.getByRole('button', { name: 'Next review' }));
+  expect(scrollBy).toHaveBeenCalledWith({ left: 320, behavior: 'smooth' });
+});
