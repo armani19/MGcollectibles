@@ -84,3 +84,37 @@ header nav>a:hover,header nav>a:focus-visible{background:none;color:var(--orange
 @media(max-width:900px){header nav,header nav.open{top:75px;min-height:calc(100vh - 75px);padding:35px 25px}.social-panel{top:75px}.moments-collage{min-height:650px}.moments-collage .moment-delivery{top:330px}.order-inner{grid-template-columns:1fr}.order-button{width:max-content;max-width:100%}}
 @media(max-width:650px){.social-toggle{width:58px}.menu{width:76px}.menu-word{display:none}.social-panel{right:76px;max-width:calc(100vw - 76px)}header nav>a{font-size:clamp(32px,10vw,52px)}.ticker{margin-top:-6px}.delivery{padding-top:55px;padding-bottom:95px}.moments-collage{min-height:540px;margin-top:0}.moments-collage .moment-main{width:65%}.moments-collage .moment-overlap{width:55%;top:135px}.moments-collage .moment-delivery{width:40%;top:335px;right:0}.moments-sticker{bottom:5%;left:0;font-size:16px;padding:18px}.order-cta{padding:85px 0}.order-cta h2{font-size:clamp(58px,13vw,85px)}.order-button{font-size:18px;padding:18px}}
 @media(prefers-reduced-motion:reduce){header nav,header nav.open,.social-toggle,.social-panel a,.menu-social a,.moments-collage .photo,.order-button{transition:none}}
+
+/* Header, ink menu, scroll details, and floating Facebook basket */
+header{align-items:center}
+.header-links{display:flex;align-items:center;gap:clamp(12px,1.7vw,30px);padding-left:28px;white-space:nowrap}
+.header-links a{font:800 clamp(16px,1.45vw,21px) 'Barlow Condensed',sans-serif;text-transform:uppercase;transition:color .2s,transform .2s}
+.header-links a:hover,.header-links a:focus-visible{color:#d97700;transform:translateY(-3px)}
+header .brand{position:absolute;left:50%;top:calc(50% - 6px);z-index:4;width:205px;padding:0;align-items:center;transform:translate(-50%,-50%) rotate(-5deg)}
+header .brand:hover{transform:translate(-50%,-50%) rotate(-5deg) scale(1.05)}
+header .brand strong{font-size:49px;line-height:.85}
+header .brand small{font-size:11px;letter-spacing:3.2px;margin-left:0}
+.header-actions{height:100%;position:relative;z-index:4}
+header .menu{height:100%;width:150px}
+.kunai{width:52px;height:22px;display:inline-block;flex:none;vertical-align:middle;transition:transform .25s ease}
+a:hover .kunai,a:focus-visible .kunai{transform:translateX(7px)}
+header nav,header nav.open{z-index:2;padding-left:max(23vw,210px);background:#080808;overflow:hidden}
+header nav:before{content:'';position:absolute;left:0;top:0;bottom:0;width:22%;background:linear-gradient(160deg,#f4a23f,#8a4a1b);clip-path:polygon(0 0,78% 0,69% 6%,91% 11%,72% 18%,99% 25%,76% 31%,92% 39%,65% 48%,100% 57%,69% 65%,89% 72%,61% 80%,85% 88%,53% 94%,76% 100%,0 100%);opacity:.95}
+header nav:after{content:'';position:absolute;left:10%;top:-5%;bottom:-5%;width:18%;pointer-events:none;background:radial-gradient(circle at 30% 9%,#080808 0 12px,transparent 13px),radial-gradient(circle at 67% 26%,#080808 0 28px,transparent 29px),radial-gradient(circle at 28% 46%,#080808 0 16px,transparent 17px),radial-gradient(circle at 77% 69%,#080808 0 24px,transparent 25px),radial-gradient(circle at 22% 90%,#080808 0 33px,transparent 34px)}
+header nav>*{position:relative;z-index:1}
+header nav>a .kunai{width:38px;color:var(--orange)}
+.floating-social{position:fixed;right:25px;bottom:25px;z-index:35;width:142px;min-height:115px;background:#080808;color:#fff;border:2px solid #fff;border-radius:6px;box-shadow:0 7px 20px #0009;display:flex;align-items:center;justify-content:center;padding:35px 12px 12px}
+.floating-social-label{position:absolute;top:-14px;left:-8px;right:-8px;padding:5px 8px;background:#080808;border:2px solid #fff;border-radius:5px;text-align:center;font:900 15px/0.9 'Barlow Condensed',sans-serif}
+.floating-social a{display:grid;place-items:center;width:55px;height:55px;background:#fff;color:#111;border-radius:50%;font:900 37px Arial,sans-serif;line-height:1;transition:background .25s,transform .25s}
+.floating-social a:hover,.floating-social a:focus-visible{background:var(--orange);transform:rotate(-12deg) scale(1.1)}
+.transition-toad{position:absolute;z-index:5;width:clamp(105px,13vw,190px);height:auto;pointer-events:none;filter:drop-shadow(5px 8px 0 #1118)}
+.toad-community{right:8%;top:-110px}
+.reviews{overflow:visible;border-top:8px solid #f2eee5;border-bottom:8px solid #f2eee5;box-shadow:inset 0 7px #111,inset 0 -7px #111;background-color:#111;background-image:repeating-linear-gradient(90deg,transparent 0 84px,#ffffff08 85px,#ffffff08 86px,transparent 87px 168px)}
+.reviews:before{background:#111;top:-18px}
+.reviews:after{content:'';position:absolute;left:0;top:-15px;bottom:-15px;width:24px;border:2px solid #eee;border-radius:12px;background:linear-gradient(90deg,#111 0 6px,#eee 7px 10px,#111 11px 16px,#eee 17px 20px,#111 21px);box-shadow:5px 0 #0006}
+.toad-reviews{right:7%;top:-125px;width:clamp(90px,11vw,150px)}
+footer{border-top:8px solid #eee;border-bottom:8px solid #eee;box-shadow:inset 0 7px #222,inset 0 -7px #222;background-image:repeating-linear-gradient(90deg,transparent 0 110px,#ffffff07 111px,#ffffff07 112px,transparent 113px 220px)}
+@media(max-width:1100px){.header-links{gap:12px;padding-left:15px}.header-links a{font-size:16px}header .brand{width:165px}header .brand strong{font-size:42px}header .brand small{font-size:9px}header .menu{width:110px}}
+@media(max-width:850px){.header-links{display:none}header .brand{left:50%}header nav,header nav.open{padding-left:22vw}.floating-social{right:15px;bottom:15px}}
+@media(max-width:650px){body{overflow-x:hidden}.hero h1{font-size:clamp(53px,14.5vw,80px);letter-spacing:-2px}header .brand{top:calc(50% - 4px);width:145px}header .brand strong{font-size:39px}header .brand small{font-size:8px}header .menu{width:76px}header nav,header nav.open{padding-left:22vw}header nav:before{width:24%}header nav>a .kunai{width:28px}.floating-social{width:104px;min-height:87px;padding:27px 8px 8px}.floating-social-label{font-size:11px}.floating-social a{width:42px;height:42px;font-size:29px}.toad-community{right:4%;top:-70px}.toad-reviews{right:4%;top:-80px}.reviews:after{width:14px}}
+@media(prefers-reduced-motion:reduce){.kunai,.floating-social a{transition:none}}
