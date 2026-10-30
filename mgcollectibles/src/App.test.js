@@ -14,7 +14,7 @@ test('shows both real moments photos and Facebook order link', () => {
   render(<App />);
   expect(screen.getByText('Our Story', { selector: '.header-links a' })).toBeInTheDocument();
   expect(screen.getByRole('complementary', { name: 'Official social media' }).querySelector('a')).toHaveAttribute('href', 'https://www.facebook.com/profile.php?id=61566342556520#');
-  expect(document.querySelectorAll('img.transition-toad')).toHaveLength(2);
+  expect(document.querySelectorAll('img.transition-toad')).toHaveLength(1);
   expect(screen.getByAltText('Miko smiling beside a stack of boxed orders')).toBeInTheDocument();
   expect(screen.getByAltText('Miko giving a thumbs up beside packed shipping boxes')).toBeInTheDocument();
   expect(screen.getByText('MESSAGE US ON FACEBOOK').closest('a')).toHaveAttribute('href', 'https://www.facebook.com/profile.php?id=61566342556520#');
