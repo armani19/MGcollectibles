@@ -10,7 +10,7 @@ function Photo({ file, label, className = '' }) {
   </div>;
 }
 
-const Arrow = () => <svg className="kunai" viewBox="0 0 80 24" aria-hidden="true" focusable="false"><circle cx="7" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="2.5"/><path d="M11 10.5h37v3H11zM19 8h2v8h-2zM25 8h2v8h-2zM48 12 65 3l12 9-12 9z" fill="currentColor"/></svg>;
+const Arrow = () => <span className="kunai" aria-hidden="true" />;
 
 function ReviewCards({ duplicate = false }) {
   return <div className="review-set" aria-hidden={duplicate ? 'true' : undefined}>
