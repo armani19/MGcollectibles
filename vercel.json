@@ -1,0 +1,1 @@
+{"version":2,"buildCommand":"cd mgcollectibles && npm run build","installCommand":"cd mgcollectibles && npm ci","outputDirectory":"mgcollectibles/build"}
