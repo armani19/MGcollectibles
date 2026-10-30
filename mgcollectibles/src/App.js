@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { reviews } from './reviews';
 
+const FACEBOOK_URL = 'https://www.facebook.com/share/1HgdWfGXxo/?mibextid=wwXIfr';
+
 function Photo({ file, label, className = '' }) {
   const [missing, setMissing] = useState(false);
   return <div className={'photo ' + className}>
@@ -22,6 +24,19 @@ function ReviewCards({ duplicate = false }) {
 
 export default function App() {
   const [menu, setMenu] = useState(false);
+  const [headerHidden, setHeaderHidden] = useState(false);
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      if (menu || currentY < 60) setHeaderHidden(false);
+      else if (currentY - lastY > 6) setHeaderHidden(true);
+      else if (lastY - currentY > 6) setHeaderHidden(false);
+      lastY = currentY;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [menu]);
   useEffect(() => {
     const close = event => { if (event.key === 'Escape') setMenu(false); };
     window.addEventListener('keydown', close);
@@ -42,7 +57,7 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
   return <div>
-    <header>
+    <header className={headerHidden && !menu ? 'is-hidden' : ''}>
       <div className="header-links" aria-label="Site sections"><a href="#story">Our Story</a><a href="#journey">Our Journey</a><a href="#community">Community</a><a href="#reviews">Reviews</a></div>
       <a className="brand" href="#top"><strong>M.G.</strong><small>COLLECTIBLES</small></a>
       <div className="header-actions">
@@ -55,10 +70,10 @@ export default function App() {
         <a href="#community" onClick={() => setMenu(false)}>COMMUNITY <Arrow /></a>
         <a href="#reviews" onClick={() => setMenu(false)}>REVIEWS <Arrow /></a>
         <a href="#contact" onClick={() => setMenu(false)}>CONTACT <Arrow /></a>
-        <div className="menu-social"><span>OFFICIAL SOCIAL MEDIA</span><a href="https://www.facebook.com/profile.php?id=61566342556520#" target="_blank" rel="noopener noreferrer" aria-label="Visit MG Collectibles on Facebook">f</a></div>
+        <div className="menu-social"><span>OFFICIAL SOCIAL MEDIA</span><a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" aria-label="Visit MG Collectibles on Facebook">f</a></div>
       </nav>
     </header>
-    <aside className="floating-social" aria-label="Official social media"><div className="floating-social-label">OFFICIAL<br />SOCIAL MEDIA</div><a href="https://www.facebook.com/profile.php?id=61566342556520#" target="_blank" rel="noopener noreferrer" aria-label="Visit MG Collectibles on Facebook">f</a></aside>
+    <aside className="floating-social" aria-label="Official social media"><div className="floating-social-label">OFFICIAL<br />SOCIAL MEDIA</div><a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" aria-label="Visit MG Collectibles on Facebook">f</a></aside>
     <main id="top">
       <section className="hero"><div className="wrap hero-inner"><p className="kicker">FROM FAN TO FOUNDER <span>✦</span> EST. NOVEMBER 2025</p><h1>A STORY BUILT<br />ON <em>PASSION.</em></h1><p>From a love for Naruto figures to a community of collectors across the Philippines. This is the story behind MG Collectibles.</p><a className="button" href="#story">DISCOVER OUR STORY <Arrow /></a></div><div className="hero-mark">M.G.</div><div className="hero-foot wrap"><span>MANILA, PHILIPPINES</span><span>SCROLL TO EXPLORE ↓</span></div></section>
       <div className="ticker">AUTHENTIC COLLECTIBLES <b>✦</b> MADE FOR FANS <b>✦</b> SHIPPED NATIONWIDE <b>✦</b> AUTHENTIC COLLECTIBLES <b>✦</b> MADE FOR FANS</div>
@@ -68,8 +83,8 @@ export default function App() {
       <section className="section delivery wrap" id="moments"><div className="delivery-copy"><div className="section-label">REAL MOMENTS</div><h2>THE JOURNEY<br />CONTINUES <i>↗</i></h2><p>From packed boxes to your display shelf, every order is part of a collector's story. Here are a few moments from behind the scenes.</p></div><div className="moments-collage"><Photo file="real-moments-shipping.jpg" label="Miko smiling beside a stack of boxed orders" className="moment-main" /><Photo file="real-moments-boxes.jpg" label="Miko giving a thumbs up beside packed shipping boxes" className="moment-overlap" /><Photo file="miko-lalamove.png" label="Miko with a delivery rider during a shipment handoff" className="moment-delivery" /><span className="moments-sticker">PACKED WITH<br />PASSION ✦</span></div></section>
       <section id="reviews" className="section reviews"><div className="wrap"><div className="section-label">WORD FROM THE COMMUNITY</div><h2>COLLECTORS<br /><i>HAVE SPOKEN.</i></h2><p className="review-hint">STORIES FROM OUR COLLECTORS · HOVER TO PAUSE</p></div><div className="review-viewport"><div className="review-track"><ReviewCards /><ReviewCards duplicate /></div></div></section>
       <section className="closing"><div className="wrap"><div className="section-label">THANK YOU FOR BEING PART OF OUR JOURNEY</div><h2>FOR THE LOVE<br />OF <em>COLLECTING.</em></h2><p>From our collection to yours — the story is only getting started.</p><a className="button" href="#contact">GET IN TOUCH <Arrow /></a></div></section>
-      <section className="order-cta" id="orders"><div className="wrap order-inner"><div><div className="section-label">READY FOR YOUR NEXT FIND?</div><h2>YOUR NEXT FIGURE<br />STARTS WITH A <i>MESSAGE.</i></h2><p>Looking for an item or ready to order? Send MG Collectibles a message on Facebook and we'll help you find your next favorite piece.</p></div><a className="order-button" href="https://www.facebook.com/profile.php?id=61566342556520#" target="_blank" rel="noopener noreferrer"><span className="facebook-mark">f</span><span>MESSAGE US ON FACEBOOK</span><span aria-hidden="true">↗</span></a></div></section>
+      <section className="order-cta" id="orders"><div className="wrap order-inner"><div><div className="section-label">READY FOR YOUR NEXT FIND?</div><h2>YOUR NEXT FIGURE<br />STARTS WITH A <i>MESSAGE.</i></h2><p>Looking for an item or ready to order? Send MG Collectibles a message on Facebook and we'll help you find your next favorite piece.</p></div><a className="order-button" href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer"><span className="facebook-mark">f</span><span>MESSAGE US ON FACEBOOK</span><span aria-hidden="true">↗</span></a></div></section>
     </main>
-    <footer id="contact"><div className="wrap footer-grid"><div><div className="footer-brand">M.G.<small>COLLECTIBLES</small></div><p>Authentic anime figures and collectibles from Japan to the Philippines. Built by fans, for fans.</p></div><div><h3>EXPLORE</h3><a href="#story">Our Story</a><a href="#journey">Our Journey</a><a href="#community">Community</a><a href="#reviews">Reviews</a></div><div><h3>FIND US</h3><p>San Andres Bukid, Manila<br />Philippines</p><p>Shipping nationwide</p></div><div><h3>CONNECT</h3><p>Follow MG Collectibles for updates, inquiries, and item orders.</p><a href="https://www.facebook.com/profile.php?id=61566342556520#" target="_blank" rel="noopener noreferrer">FACEBOOK ↗</a></div></div><div className="wrap copyright"><span>© 2026 MG COLLECTIBLES. ALL RIGHTS RESERVED.</span><span>MADE FOR COLLECTORS, BY COLLECTORS. ✦</span></div></footer>
+    <footer id="contact"><div className="wrap footer-grid"><div><div className="footer-brand">M.G.<small>COLLECTIBLES</small></div><p>Authentic anime figures and collectibles from Japan to the Philippines. Built by fans, for fans.</p></div><div><h3>EXPLORE</h3><a href="#story">Our Story</a><a href="#journey">Our Journey</a><a href="#community">Community</a><a href="#reviews">Reviews</a></div><div><h3>FIND US</h3><p>San Andres Bukid, Manila<br />Philippines</p><p>Shipping nationwide</p></div><div><h3>CONNECT</h3><p>Follow MG Collectibles for updates, inquiries, and item orders.</p><a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer">FACEBOOK ↗</a></div></div><div className="wrap copyright"><span>© 2026 MG COLLECTIBLES. ALL RIGHTS RESERVED.</span><span>MADE FOR COLLECTORS, BY COLLECTORS. ✦</span></div></footer>
   </div>;
 }

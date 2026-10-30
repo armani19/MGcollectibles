@@ -166,3 +166,10 @@ header nav:after{content:none}
 .reviews{padding-top:65px}
 @media(max-width:900px){.moments-collage{min-height:620px}}
 @media(max-width:650px){.moments-collage{min-height:530px}.delivery{padding-bottom:45px}.reviews{padding-top:60px}}
+
+/* Keep navigation nearby without covering the page while scrolling down. */
+header{position:sticky;top:0;transition:transform .3s ease}
+header.is-hidden{transform:translateY(-100%)}
+section[id],footer[id]{scroll-margin-top:92px}
+@media(max-width:900px){section[id],footer[id]{scroll-margin-top:75px}}
+@media(prefers-reduced-motion:reduce){header{transition:none}}
